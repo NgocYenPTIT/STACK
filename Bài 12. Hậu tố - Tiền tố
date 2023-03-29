@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    cin >> s;
+    stack<string> st;
+    for(auto x : s){
+        if(isalpha(x))st.push(string(1,x));
+        else {
+            auto x1 = st.top() ; st.pop();
+            auto x2 = st.top() ; st.pop();
+            st.push( x + x2 + x1);
+        }
+    }
+    cout<<st.top();
+}
