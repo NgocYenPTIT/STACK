@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ii pair<int,int>
+stack<char> st ;
+int main(){
+    string s;
+    cin >> s;
+    int ok = 1;
+    for(auto x: s){
+        if(x != ' '){
+            if( x == '{' || x == '[' || x == '(' )st.push(x);
+        else if(!st.size()){
+            if( x == ')' || x == ']' || x == '}')ok=0;
+        }
+        else {
+            if( x == ')' && st.top() != '(')ok = 0;
+            else if( x =='}' && st.top() != '{' ) ok = 0;
+            else if( x == ']' && st.top() != '[')ok = 0;
+        }
+        }
+    }
+    if(ok)cout<<"YES";
+    else cout<<"NO";
+}
