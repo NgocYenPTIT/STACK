@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ii pair<int,int>
+stack < char> st;
+int main(){
+    string s ;
+    cin >> s;
+    int checkthua = 0;
+    for(auto x : s){
+        if( x != ')')st.push(x);
+        else {
+            int ok = 0;
+            while( st.top() != '('){
+                if(st.top()=='+' || st.top() == '-' || st.top() == '*' || st.top() == '/')ok = 1;
+                st.pop();
+            }
+            st.pop();
+            if(!ok)checkthua = 1;
+        }
+    }
+    if(checkthua)cout<<"YES";
+    else cout<<"NO";
+}
