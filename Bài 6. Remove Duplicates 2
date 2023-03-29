@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ii pair<int,int>
+stack < pair<char, int> > st;
+void inkq(){
+    if(!st.size())return;
+    char x = st.top().first;
+    st.pop();
+    inkq();
+    cout<<x;
+}
+int main(){
+    string s ;
+    int k;
+    cin >> s >> k;
+    for(auto x : s){
+        if(!st.size() || x != st.top().first)st.push({x,1});
+        else st.push({x, st.top().second  + 1});
+        if(st.top().second == k){
+            int loop = k;
+            while(loop--)st.pop();
+        }
+    }
+    if(!st.size())cout<<"EMPTY";
+    else {
+    inkq();    
+    }
+}
