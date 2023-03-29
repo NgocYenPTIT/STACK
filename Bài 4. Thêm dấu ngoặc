@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ii pair<int,int>
+stack<char> st ;
+int main(){
+    string s;
+    cin >> s;
+    for(auto x : s){
+       if( st.size() && x == ')' && st.top() == '(')st.pop();
+        else st.push(x);
+    }
+    cout<<st.size();
+}
