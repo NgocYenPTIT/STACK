@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int check(char c){
+    if( c == '(' || c == ')')return 0;
+    if( c == '+' || c  == '-')return 1;
+    if( c == '*' || c == '/')return 2;
+    if( c == '^') return 3;
+    return 0;
+}
+
+string solve(string s){
+    stack <char> st ;
+    string ans ;
+    for(auto x : s){
+        if(isalpha(x))ans += x;
+        else if ( x == '(')st.push(x);
+        else if( x == ')'){
+            while(st.size() && st.top() != '(')ans += st.top() , st.pop();
+            st.pop();
+        }
+        else if( !st.size() ||  check(x) > check(st.top())){
+            st.push(x);
+        }
+        else if ( check(x) < check(st.top() ) ){ // check (x) <= check(st.top())
+            while(st.size() && st.top()!= '(')ans += st.top() , st.pop();
+            st.push(x);
+        }
+        else {
+            while(st.size() && check(x) == check(st.top()))ans+=st.top() , st.pop();
+            st.push(x);
+        }
+    }
+    while(st.size())ans += st.top(), st.pop();
+    return ans;
+}
+int main(){
+    string s;
+    cin >> s;
+    cout<< solve(s);
+}
