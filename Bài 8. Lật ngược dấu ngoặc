@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long ;
+// ((((((
+// ))))))
+// )))(((
+// ))((((
+// ))))((
+// ())(( )
+int main () {
+    string s ;
+    cin >> s;
+    stack < char> st;
+    for(auto x : s){
+        if( st .size() &&  x == ')' && st.top() == '(')st.pop();
+        else st.push(x);
+    }
+    int cntmo = 0 , cntdong = 0;
+    while(st.size()){
+        if(st.top() == '(')cntmo ++;
+        else cntdong ++;
+        st.pop();
+    }
+    int ans = 0;
+    ans += cntdong/2 + cntmo /2;
+    ans += cntdong %2 + cntmo %2;
+    
+cout<<ans;
+}
