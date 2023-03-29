@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+void solve(){
+    string s;
+    cin >> s ;
+    stack < string > st ;
+    for(int  i = s.size() - 1 ; i>= 0 ; i--){
+        if(isalpha(s[i]))st.push(string(1, s[i]));
+        else {
+            auto x = st.top();
+            st.pop();
+            auto  y = st.top();
+            st.pop();
+            auto res = "(" + x + s[i]  + y + ")";
+            st.push(res);
+        }
+    }
+    cout<<st.top();
+}
+int main(){
+    solve();
+}
