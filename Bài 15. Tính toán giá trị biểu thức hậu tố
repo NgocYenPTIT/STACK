@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    cin >> s;
+    stack<int> st;
+    for(int i = 0 ; i <s.size() ;i++){
+        if(isdigit(s[i]))st.push(s[i] -48);
+        else {
+            int x = st.top();st.pop();
+            int y = st.top() ; st.pop();
+//            st.push( y - x);
+            if( s[i] == '-')st.push( y - x);
+            if( s[i] == '+')st.push( y + x);
+            if( s[i] == '*')st.push( y * x);
+            if( s[i] == '/')st.push( y / x);
+        }
+    }
+    cout<<st.top();
+}
